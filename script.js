@@ -8,7 +8,7 @@ const promise1 = () => {
 			const end1 = Date.now();
 			const seconds1 = ((end1 - start1)/1000).toFixed(3)
 			resolve({text: "Promise 1", time: seconds1});
-		}, 1200);
+		}, 1000);
     });
 };
 
@@ -18,7 +18,7 @@ const promise2 = () => {
 		const end2 = Date.now();
 		const seconds2 = ((end2 - start2)/1000).toFixed(3)
 		resolve({text: "Promise 2", time: seconds2})
-		}, 2000);
+		}, 1000);
     });
 };
 
@@ -28,7 +28,7 @@ const promise3 = () => {
 		const end3 = Date.now();
 		const seconds3 = ((end3 - start3)/1000).toFixed(3)
 			resolve({text: "Promise 3", time: seconds3})
-		}, 3000);
+		}, 1000);
     });
 };
 
