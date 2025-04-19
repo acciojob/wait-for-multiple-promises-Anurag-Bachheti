@@ -1,35 +1,55 @@
-let block2 = document.getElementById("first2");
+const start1 = Date.now();
+const start2 = Date.now();
+const start3 = Date.now();
 
 const promise1 = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-			resolve("Promise 1")
-		}, 1000);
+			const end1 = Date.now();
+			const seconds1 = ((end1 - start1)/1000).toFixed(3)
+			resolve({text: "Promise 1", time: seconds1})
+		}, 1200);
     });
 }
 
 const promise2 = () => {
     return new Promise((resolve, reject) => {
+		const end2 = Date.now();
+		const seconds2 = ((end2 - start2)/1000).toFixed(3)
         setTimeout(() => {
-			resolve("Promise 2")
-		}, 1000);
+			resolve({text: "Promise 2", time: seconds2})
+		}, 1500);
     });
 };
 
 const promise3 = () => {
     return new Promise((resolve, reject) => {
-        setTimeout(() =>
-			{resolve("Promise 3")
-		}, 1000);
+	    const end3 = Date.now();
+		const seconds3 = ((end3 - start3)/1000).toFixed(3)
+		setTimeout(() =>
+			{resolve({text: "Promise 3", time: seconds3})
+		}, 3000);
     });
 };
 
+document.getElementById("loading").innerHTML = "⏳ Please wait, loading...";
+
 Promise.all([promise1(), promise2(), promise3()]).then((data) => {
-	document.getElementById("first1").innerHTML = data[0];
-	document.getElementById("first2").innerHTML = data[0].getMiliseconds;
+	document.getElementById("loading").style.display = "none"; 
+	
+	document.getElementById("first1").innerHTML = data[0].text;
+    document.getElementById("first2").innerHTML = `${data[0].time}`;
+
+	document.getElementById("second1").innerHTML = data[1].text;
+	document.getElementById("second2").innerHTML = `${data[1].time}`;
+
+	document.getElementById("third1").innerHTML = data[2].text;
+	document.getElementById("third2").innerHTML = `${data[2].time}`;
+
+	let totalTime = parseFloat(data[0].time)+
+					parseFloat(data[0].time)+
+					parseFloat(data[0].time);
+	const totalRounded = totalTime.toFixed(3);
+	document.getElementById("totalTime").innerHTML = `${"Total"}`;
+	document.getElementById("forth2").innerHTML = `${totalRounded}`;
 });
-
-
-
-
-
