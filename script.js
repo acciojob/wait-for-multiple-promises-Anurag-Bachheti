@@ -32,10 +32,10 @@ const promise3 = () => {
     });
 };
 
-document.getElementById("loading").innerHTML = "Loading...";
+document.querySelector("#loading td").innerHTML = "Loading...";
 
 Promise.all([promise1(), promise2(), promise3()]).then((data) => {
-	document.getElementById("loading").style.display = "none"; 
+	 document.getElementById("loading").remove();
 	
 	document.getElementById("first1").innerHTML = data[0].text;
     document.getElementById("first2").innerHTML = `${data[0].time}`;
