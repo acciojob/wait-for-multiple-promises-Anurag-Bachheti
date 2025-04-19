@@ -3,36 +3,36 @@ const start2 = Date.now();
 const start3 = Date.now();
 
 const promise1 = () => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         setTimeout(() => {
 			const end1 = Date.now();
 			const seconds1 = ((end1 - start1)/1000).toFixed(3)
-			resolve({text: "Promise 1", time: seconds1})
+			resolve({text: "Promise 1", time: seconds1});
 		}, 1200);
     });
-}
+};
 
 const promise2 = () => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
 		const end2 = Date.now();
 		const seconds2 = ((end2 - start2)/1000).toFixed(3)
-        setTimeout(() => {
-			resolve({text: "Promise 2", time: seconds2})
-		}, 1500);
+		resolve({text: "Promise 2", time: seconds2})
+		}, 2000);
     });
 };
 
 const promise3 = () => {
-    return new Promise((resolve, reject) => {
-	    const end3 = Date.now();
+    return new Promise((resolve) => {
+        setTimeout(() => {
+		const end3 = Date.now();
 		const seconds3 = ((end3 - start3)/1000).toFixed(3)
-		setTimeout(() =>
-			{resolve({text: "Promise 3", time: seconds3})
+			resolve({text: "Promise 3", time: seconds3})
 		}, 3000);
     });
 };
 
-document.getElementById("loading").innerHTML = "⏳ Please wait, loading...";
+document.getElementById("loading").innerHTML = "Loading...";
 
 Promise.all([promise1(), promise2(), promise3()]).then((data) => {
 	document.getElementById("loading").style.display = "none"; 
@@ -47,9 +47,11 @@ Promise.all([promise1(), promise2(), promise3()]).then((data) => {
 	document.getElementById("third2").innerHTML = `${data[2].time}`;
 
 	let totalTime = parseFloat(data[0].time)+
-					parseFloat(data[0].time)+
-					parseFloat(data[0].time);
+					parseFloat(data[1].time)+
+					parseFloat(data[2].time);
+	
 	const totalRounded = totalTime.toFixed(3);
-	document.getElementById("totalTime").innerHTML = `${"Total"}`;
+	
+	document.getElementById("totalTime").innerHTML = `Total`;
 	document.getElementById("forth2").innerHTML = `${totalRounded}`;
 });
